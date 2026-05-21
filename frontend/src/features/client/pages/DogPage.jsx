@@ -28,11 +28,11 @@ const DogPage = () => {
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-indigo-200/30 rounded-full blur-[100px] z-0"></div>
         
         <div className="max-w-3xl z-10">
-          <h2 className="text-indigo-600 text-xs md:text-sm font-black mb-3 uppercase tracking-[0.3em]">
+          <h2 className="text-indigo-600 text-xs sm:text-sm font-black mb-2 sm:mb-3 uppercase tracking-[0.2em] sm:tracking-[0.3em]">
             Find Your Perfect Pet
           </h2>
           
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-slate-900 mb-6 leading-[1.1]">
+          <h1 className="text-3xl md:text-5xl lg:text-7xl font-black text-slate-900 mb-4 sm:mb-6 leading-[1.1]">
             Find Your New <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-400">
               Best Friend
