@@ -4,14 +4,15 @@ import { Heart, CheckCircle2, Footprints } from 'lucide-react';
 const ServiceGrid = () => {
   return (
     <section className="px-3 sm:px-6 md:px-10 py-12 sm:py-16 bg-[#F8F9FE]">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-7xl mx-auto">
         
         {/* Left Card: Adopt */}
         <div className="relative min-h-[350px] sm:min-h-[420px] md:h-[450px] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden group shadow-lg">
-          <img 
-            src="https://www.petplace.com/pet-adoption/media_1740aa105bbc41052f254093d1112ead04d221c37.jpeg?width=750&format=jpeg&optimize=medium" 
-            alt="Adopt a pet" 
-            className="w-full h-full object-cover brightness-75 group-hover:scale-105 transition-transform duration-500"
+          <div
+            role="img"
+            aria-label="Adopt a pet"
+            className="w-full h-full bg-center bg-cover brightness-75 group-hover:scale-105 transition-transform duration-500"
+            style={{ backgroundImage: `url("https://www.petplace.com/pet-adoption/media_1740aa105bbc41052f254093d1112ead04d221c37.jpeg?width=750&format=jpeg&optimize=medium")` }}
           />
           <div className="absolute inset-0 flex flex-col items-center justify-end pb-6 sm:pb-12 text-center px-4 sm:px-6">
             <h3 className="text-white text-base sm:text-xl font-medium mb-4 sm:mb-6">Looking to adopt?</h3>
@@ -50,10 +51,11 @@ const ServiceGrid = () => {
 
         {/* Right Card: Sell */}
         <div className="relative min-h-[350px] sm:min-h-[420px] md:h-[450px] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden group shadow-lg">
-          <img 
-            src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=600" 
-            alt="Sell your pet" 
-            className="w-full h-full object-cover brightness-75 group-hover:scale-105 transition-transform duration-500"
+          <div
+            role="img"
+            aria-label="Sell your pet"
+            className="w-full h-full bg-center bg-cover brightness-75 group-hover:scale-105 transition-transform duration-500"
+            style={{ backgroundImage: `url("https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=600")` }}
           />
           <div className="absolute inset-0 flex flex-col items-center justify-end pb-6 sm:pb-12 text-center px-4 sm:px-6">
             <h3 className="text-white text-base sm:text-xl font-medium mb-4 sm:mb-6">Want to sell your pet?</h3>

@@ -6,7 +6,8 @@ import {
     deleteListing,
     getHomeListings,
     searchListings,
-    getListingById
+    getListingById,
+    getListingBySlug
 } from '../controllers/listingController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import { uploadAnyImage, handleUploadError } from '../middleware/uploadMiddleware.js';
@@ -16,6 +17,7 @@ const router = express.Router();
 // Public routes
 router.get('/home', getHomeListings);
 router.get('/search', searchListings);
+router.get('/slug/:slug', getListingBySlug);
 router.get('/:id', getListingById);
 
 // Protected routes (require authentication)

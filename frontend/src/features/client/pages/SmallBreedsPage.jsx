@@ -96,7 +96,12 @@ const SmallBreedsPage = () => {
           {featuredBreeds.map((breed, idx) => (
             <div key={idx} className="bg-white border border-slate-100 rounded-[32px] p-4 shadow-sm hover:shadow-md transition-all group">
               <div className="relative h-48 mb-6 rounded-[24px] overflow-hidden">
-                <img src={breed.image} alt={breed.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div
+                  role="img"
+                  aria-label={breed.name || "Breed image"}
+                  className="w-full h-full bg-center bg-cover group-hover:scale-110 transition-transform duration-500"
+                  style={{ backgroundImage: `url("${breed.image}")` }}
+                />
                 <span className="absolute top-3 right-3 bg-[#065F46] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">
                   {breed.badge}
                 </span>
@@ -137,7 +142,7 @@ const SmallBreedsPage = () => {
             <p className="text-indigo-200 max-w-2xl mx-auto">Big love comes in tiny packages. Here is why small breeds might be the perfect fit for your lifestyle.</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             <div className="p-8 bg-indigo-800/50 rounded-[32px] border border-indigo-700/50 hover:bg-indigo-800 transition-colors">
               <div className="bg-indigo-500 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/30">
                 <ShieldCheck className="text-white" />

@@ -1,12 +1,11 @@
 import React from "react";
 
 import { ArrowRight, Calendar, User, Clock } from "lucide-react";
-
+import { Link } from "react-router-dom";
 
 import nutrationImg from "../../../assets/nutration6.jpg";
 import healthImg from "../../../assets/health6.jpg";
 import trainingImg from "../../../assets/training7.jpg";
-
 
 const BlogCard = ({
   category,
@@ -27,10 +26,11 @@ const BlogCard = ({
         </span>
       </div>
 
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+      <div
+        role="img"
+        aria-label={title || "Blog cover"}
+        className="w-full h-full bg-center bg-cover group-hover:scale-110 transition-transform duration-700"
+        style={{ backgroundImage: `url("${image}")` }}
       />
     </div>
 
@@ -70,11 +70,14 @@ const BlogCard = ({
             <User size={10} className="sm:hidden" />
           </div>
 
-          <span className="text-slate-700 font-bold text-xs line-clamp-1">{author}</span>
+          <span className="text-slate-700 font-bold text-xs line-clamp-1">
+            {author}
+          </span>
         </div>
 
         <button className="flex items-center text-indigo-600 font-bold text-xs sm:text-sm group-hover:gap-1 sm:group-hover:gap-2 transition-all flex-shrink-0">
-          <span className="hidden xs:inline">Read</span> <ArrowRight size={14} className="ml-0.5 sm:ml-1" />
+          <span className="hidden xs:inline">Read</span>{" "}
+          <ArrowRight size={14} className="ml-0.5 sm:ml-1" />
         </button>
       </div>
     </div>
@@ -141,7 +144,7 @@ const BlogSection = () => {
 
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-50" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="w-full relative z-10">
         {/* Header */}
 
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-4 sm:gap-6">
@@ -160,25 +163,29 @@ const BlogSection = () => {
             </p>
           </div>
 
-          <button className="hidden md:flex items-center gap-2 bg-white border border-slate-200 px-6 py-3 rounded-2xl font-bold text-slate-700 hover:bg-slate-50 hover:border-indigo-200 transition-all shadow-sm text-sm">
+          <Link
+            to="/blogs"
+            className="hidden md:inline-flex items-center gap-2 bg-white border border-slate-200 px-6 py-3 rounded-2xl font-bold text-slate-700 hover:bg-slate-50 hover:border-indigo-200 transition-all shadow-sm text-sm"
+          >
             View All Posts <ArrowRight size={18} />
-          </button>
+          </Link>
         </div>
 
         {/* Grid */}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10">
           {blogs.map((blog, index) => (
             <BlogCard key={index} {...blog} />
           ))}
         </div>
-
         {/* Mobile View All */}
-
         <div className="mt-8 sm:mt-12 text-center md:hidden">
-          <button className="w-full flex items-center justify-center gap-2 bg-indigo-600 px-6 py-3 sm:py-4 rounded-lg sm:rounded-2xl font-bold text-white shadow-lg shadow-indigo-100 text-sm sm:text-base">
+          <Link
+            to="/blogs"
+            className="inline-flex items-center gap-2 bg-white border border-slate-200 px-6 py-3 rounded-2xl font-bold text-slate-700 hover:bg-slate-50 hover:border-indigo-200 transition-all shadow-sm text-sm"
+          >
             View All Posts <ArrowRight size={18} />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

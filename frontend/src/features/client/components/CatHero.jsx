@@ -15,7 +15,7 @@ const CatHero = () => {
         </div>
         
         <div className="relative z-10 flex-1 flex flex-col justify-center px-4 sm:px-8 md:px-16 text-white">
-          <div className="max-w-2xl">
+          <div className="w-full">
             <h1 className="text-2xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-3 sm:mb-5">
               Discover Your <br /> Ideal Cat Companion
             </h1>

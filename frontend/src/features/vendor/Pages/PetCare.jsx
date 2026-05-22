@@ -225,7 +225,7 @@ const PetCare = () => {
 };
 
 const ServiceCard = ({ icon, title, onClick }) => (
-  <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm text-center flex flex-col items-center">
+  <div className="bg-white p-4 rounded-3xl border border-gray-100 shadow-sm text-center flex flex-col items-center">
     <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mb-4">{icon}</div>
     <h4 className="text-lg font-bold mb-4">{title}</h4>
     <button onClick={onClick} className="w-full py-3 bg-indigo-600 text-white rounded-xl font-bold text-sm">Book Now</button>

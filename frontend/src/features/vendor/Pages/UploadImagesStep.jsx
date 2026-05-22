@@ -40,13 +40,13 @@ const UploadImagesStep = ({ isEmbedded = false, images: externalImages = [], onI
       }
     });
 
-    if (images.length + validFiles.length > 8) {
-      alert('Aap maximum 8 images hi upload kar sakte hain.');
+    if (images.length + validFiles.length > 3) {
+      alert('You Can Only maximum 3 images upload .');
       return;
     }
 
     if (rejected.length) {
-      alert(`Kuch files upload nahi ho paayi: ${rejected.join(', ')}`);
+      alert(`Some files could not be uploaded: ${rejected.join(', ')}`);
     }
 
     const readFile = (file) =>

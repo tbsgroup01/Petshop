@@ -24,6 +24,14 @@ const normalizeListing = (listing) => {
     };
 };
 
+const slugify = (value = '') =>
+    String(value)
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+
 export const createListing = async (req, res) => {
     try {
         const userId = req.user.id;
@@ -418,6 +426,46 @@ export const getListingById = async (req, res) => {
         });
     } catch (error) {
         console.error('Get listing by id error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to fetch listing'
+        });
+    }
+};
+
+export const getListingBySlug = async (req, res) => {
+    try {
+        const slug = slugify(req.params.slug);
+
+        const listings = await Listing.findAll({
+            where: { status: 'active' },
+            include: [{
+                model: User,
+                as: 'owner',
+                attributes: ['id', 'name', 'email', 'phone', 'city', 'state']
+            }]
+        });
+
+        const listing = listings.find((item) => {
+            const source = item.title || item.breed || item.pet_type || '';
+            return slugify(source) === slug;
+        });
+
+        if (!listing) {
+            return res.status(404).json({
+                success: false,
+                message: 'Listing not found'
+            });
+        }
+
+        await listing.increment('view_count');
+
+        res.json({
+            success: true,
+            listing: normalizeListing(listing)
+        });
+    } catch (error) {
+        console.error('Get listing by slug error:', error);
         res.status(500).json({
             success: false,
             message: 'Failed to fetch listing'

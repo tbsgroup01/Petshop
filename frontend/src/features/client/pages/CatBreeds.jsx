@@ -49,7 +49,7 @@ const CatBreeds = () => {
       >
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-indigo-200/30 rounded-full blur-[100px] z-0"></div>
         
-        <div className="max-w-3xl z-10">
+        <div className="w-full z-10">
           <h2 className="text-indigo-600 text-xs md:text-sm font-black mb-3 py-3 uppercase tracking-[0.3em]">
             Find Your Perfect Breed
           </h2>
@@ -100,10 +100,11 @@ const CatBreeds = () => {
               <div key={idx} className="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
                 {/* Fixed Aspect Ratio for consistent image height on all devices */}
                 <div className="aspect-[4/3] sm:aspect-square relative overflow-hidden">
-                  <img
-                    src={cat.img}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    alt={cat.name}
+                  <div
+                    role="img"
+                    aria-label={cat.name || "Breed image"}
+                    className="absolute inset-0 w-full h-full bg-center bg-cover group-hover:scale-110 transition-transform duration-700"
+                    style={{ backgroundImage: `url("${cat.img}")` }}
                   />
                   <span className="absolute top-4 right-4 bg-emerald-100 text-emerald-700 text-[10px] font-black px-3 py-1 rounded-full z-10">
                     {cat.tag}

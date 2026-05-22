@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#F8F9FE] px-3 sm:px-6 md:px-10 py-6  sm:py-10 md:py-16">
       {/* Main Footer Box */}
-      <div className="bg-white rounded-lg sm:rounded-2xl p-4 sm:p-8 md:p-12 lg:p-16 shadow-sm border border-gray-100 max-w-7xl mx-auto">
+      <div className="bg-white rounded-lg sm:rounded-2xl p-4 sm:p-8 md:p-12 lg:p-16 shadow-sm border border-gray-100 w-full">
         <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 md:gap-12">
           {/* Brand Section */}
           <div className="sm:col-span-2 lg:col-span-1">

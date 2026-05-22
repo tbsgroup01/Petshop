@@ -108,7 +108,7 @@ const PetCareDetail = () => {
           Key Care Pillars
           <div className="h-1 w-20 bg-indigo-600 rounded-full"></div>
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-4 gap-8">
           {active.points.map((p, i) => (
             <div key={i} className="p-8 bg-slate-50/50 border border-slate-100 rounded-[32px] hover:bg-white hover:shadow-2xl transition-all duration-300">
               <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 text-indigo-600">

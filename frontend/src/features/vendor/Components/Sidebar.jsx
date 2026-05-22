@@ -1,30 +1,54 @@
-
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   PawPrint,
   PlusCircle,
   MessageSquare,
-  Heart,
   BarChart3,
   User,
   Settings,
   X,
   ChevronLeft,
   ChevronRight,
+  LogOut,
 } from "lucide-react";
 
 const nav = [
-  { to: "/vendor/dashboard", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
+  { to: "/", label: "Home", icon: <LayoutDashboard size={18} /> },
+  {
+    to: "/vendor/dashboard",
+    label: "Dashboard",
+    icon: <LayoutDashboard size={18} />,
+  },
   { to: "/vendor/pets", label: "My Pets", icon: <PawPrint size={18} /> },
-  { to: "/vendor/add-pets", label: "Add New Pet", icon: <PlusCircle size={18} /> },
-  { to: "/vendor/messaging", label: "Inquiries", icon: <MessageSquare size={18} /> },
-  { to: "/vendor/booking-history", label: "Analytics", icon: <BarChart3 size={18} /> },
+  {
+    to: "/vendor/add-pets",
+    label: "Add New Pet",
+    icon: <PlusCircle size={18} />,
+  },
+  {
+    to: "/vendor/messaging",
+    label: "Inquiries",
+    icon: <MessageSquare size={18} />,
+  },
+  {
+    to: "/vendor/booking-history",
+    label: "Analytics",
+    icon: <BarChart3 size={18} />,
+  },
 ];
 
 const Sidebar = ({ mobileOpen = false, onClose = () => {} }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+
+  // Handle local storage cleanup and redirection
+  const handleLogout = () => {
+    localStorage.clear(); // Clears all items or use localStorage.removeItem("your_token_key")
+    if (onClose) onClose(); // Closes the mobile drawer if active
+    navigate("/login");
+  };
 
   return (
     <>
@@ -49,11 +73,7 @@ const Sidebar = ({ mobileOpen = false, onClose = () => {} }) => {
             onClick={() => setCollapsed(!collapsed)}
             className="p-2 rounded-md hover:bg-gray-100"
           >
-            {collapsed ? (
-              <ChevronRight size={18} />
-            ) : (
-              <ChevronLeft size={18} />
-            )}
+            {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
           </button>
         </div>
 
@@ -89,7 +109,7 @@ const Sidebar = ({ mobileOpen = false, onClose = () => {} }) => {
         </nav>
 
         {/* Bottom Section */}
-        <div className="mt-auto pt-6 space-y-2">
+        <div className="mt-auto pt-6 space-y-2 border-t border-gray-100">
           <NavLink
             to="/vendor/profile-settings"
             title="Profile"
@@ -119,15 +139,31 @@ const Sidebar = ({ mobileOpen = false, onClose = () => {} }) => {
               <span className="text-sm font-semibold">Settings</span>
             )}
           </NavLink>
+
+          {/* Functional Logout Option */}
+          <button
+            onClick={handleLogout}
+            title="Logout"
+            className={`w-full flex items-center rounded-xl text-red-500 hover:bg-red-50/60 transition-colors ${
+              collapsed ? "justify-center" : "gap-3 px-4"
+            } py-3`}
+          >
+            <span className="flex items-center justify-center w-6">
+              <LogOut size={18} />
+            </span>
+            {!collapsed && (
+              <span className="text-sm font-semibold">Logout</span>
+            )}
+          </button>
         </div>
       </aside>
 
-      {/* Mobile Sidebar (UNCHANGED) */}
+      {/* Mobile Sidebar */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
-          <aside className="absolute left-0 top-0 bottom-0 w-64 bg-white p-6 overflow-y-auto shadow-xl">
+          <aside className="absolute left-0 top-0 bottom-0 w-64 bg-white p-6 overflow-y-auto shadow-xl flex flex-col">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h1 className="text-xl font-bold text-indigo-600">
@@ -144,7 +180,7 @@ const Sidebar = ({ mobileOpen = false, onClose = () => {} }) => {
               </button>
             </div>
 
-            <nav className="space-y-2">
+            <nav className="flex-1 space-y-2">
               {nav.map((n) => (
                 <NavLink
                   key={n.to}
@@ -165,13 +201,13 @@ const Sidebar = ({ mobileOpen = false, onClose = () => {} }) => {
               ))}
             </nav>
 
-            <div className="mt-6 pt-6 border-t border-gray-100 space-y-2">
+            <div className="mt-auto pt-6 border-t border-gray-100 space-y-2">
               <NavLink
                 to="/vendor/profile-settings"
                 onClick={onClose}
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50"
               >
-                <User className="w-5 h-5" />
+                <User size={18} />
                 <span className="text-sm font-semibold">Profile</span>
               </NavLink>
 
@@ -180,9 +216,18 @@ const Sidebar = ({ mobileOpen = false, onClose = () => {} }) => {
                 onClick={onClose}
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50"
               >
-                <Settings className="w-5 h-5" />
+                <Settings size={18} />
                 <span className="text-sm font-semibold">Settings</span>
               </NavLink>
+
+              {/* Mobile Logout Functional Button */}
+              <button
+                onClick={handleLogout}
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50/60 transition-colors text-left"
+              >
+                <LogOut size={18} />
+                <span className="text-sm font-semibold">Logout</span>
+              </button>
             </div>
           </aside>
         </div>

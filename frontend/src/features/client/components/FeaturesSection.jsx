@@ -53,7 +53,7 @@ const FeaturesSection = () => {
   return (
     <section className="bg-[#F8F9FE] px-3 sm:px-6 md:px-10 py-12 sm:py-16">
       {/* Header */}
-      <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-15">
+      <div className="w-full text-center mb-12 sm:mb-15">
         <h2 className="text-slate-500 text-lg sm:text-xl font-bold mb-2 sm:mb-3">
           Why Choose Shiva Dog Clinic?
         </h2>
@@ -63,7 +63,7 @@ const FeaturesSection = () => {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 w-full">
         {features.map((feature, index) => (
           <FeatureCard key={index} {...feature} />
         ))}

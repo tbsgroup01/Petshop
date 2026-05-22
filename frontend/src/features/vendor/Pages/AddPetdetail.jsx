@@ -103,7 +103,7 @@ const AddPetdetail = () => {
                 <InputBox
                   label="Location"
                   icon={<Search size={16} />}
-                  placeholder="e.g. Mumbai, Maharashtra"
+                  placeholder="e.g. Mumbai, MH"
                 />
               </div>
               <div>

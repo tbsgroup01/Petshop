@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Login from "./features/Auth/Login";
 import Signup from "./features/Auth/Signup";
@@ -10,6 +10,7 @@ import Breeds from "./features/client/pages/Breeds";
 import CatBreeds from "./features/client/pages/CatBreeds";
 import CatPage from "./features/client/pages/CatPage";
 import DogPage from "./features/client/pages/DogPage";
+import DogDetails from "./features/client/pages/DogDetails";
 import SmallPetPage from "./features/client/pages/SmallPetPage";
 import SmallBreedsPage from "./features/client/pages/SmallBreedsPage";
 import Contact from "./features/client/pages/Contact";
@@ -51,6 +52,10 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
 import { authService } from "./services";
 import { getDashboardPath, saveAuthSession } from "./utils/auth";
+import PetDetails from "./features/vendor/Pages/PetDetails";
+
+import DayCare from "./features/client/pages/DayCare";
+import Meeting from "./features/client/pages/Meeting";
 
 const initialSignupData = {
   fullName: "",
@@ -149,6 +154,16 @@ const SignupStep = ({ step }) => {
   );
 };
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [pathname]);
+
+  return null;
+};
+
 const App = () => {
   const location = useLocation();
 
@@ -171,6 +186,7 @@ const App = () => {
 
   return (
     <>
+      <ScrollToTop />
       {shouldShowNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -184,7 +200,6 @@ const App = () => {
           <Route path="/signup" element={<SignupStep />} />
           <Route path="/signup-page" element={<SignupStep />} />
           <Route path="/register" element={<Register />} />
-          {/* <Route path="/register-page" element={<Register />} /> */}
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Route>
         <Route
@@ -197,15 +212,20 @@ const App = () => {
         />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/breeds" element={<Breeds />} />
+        <Route path="/dog-breeds" element={<Breeds />} />
         <Route path="/cat-breeds" element={<CatBreeds />} />
         <Route path="/cat" element={<CatPage />} />
         <Route path="/dog" element={<DogPage />} />
+        <Route path="/pet/:identifier" element={<DogDetails />} />
         <Route path="/small-pets" element={<SmallPetPage />} />
         <Route path="/small-breeds" element={<SmallBreedsPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/mating-services" element={<MatingServices />} />
         <Route path="/pet-care" element={<PetCarePage />} />
         <Route path="/pet-care-detail" element={<PetCareDetail />} />
+        <Route path="/services/day-care" element={<DayCare />} />
+        <Route path="/services/meeting" element={<Meeting />} />
+        <Route path="/services/mating-services" element={<MatingServices />} />
 
         <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
           <Route path="/admin" element={<AdminLayout />}>
@@ -231,6 +251,8 @@ const App = () => {
         <Route element={<ProtectedRoute allowedRoles={["vendor"]} />}>
           <Route path="/vendor" element={<VendorSharedLayout />}>
             <Route path="dashboard" element={<VendorDashboard />} />
+            {/* Dynamic Route setup kiya gaya */}
+            <Route path="pet-details/:id" element={<PetDetails />} />
             <Route path="pets" element={<VendorPets />} />
             <Route path="add-pets" element={<VendorAddPets />} />
             <Route path="add-pet-detail" element={<VendorAddPetdetail />} />
@@ -247,6 +269,8 @@ const App = () => {
             <Route path="upload-images" element={<VendorUploadImagesStep />} />
           </Route>
         </Route>
+
+
 
         <Route
           path="*"

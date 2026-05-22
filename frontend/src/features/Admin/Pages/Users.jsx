@@ -125,9 +125,7 @@ export default function Users() {
               Manage your platform users, vendors, and buyers with quick search and filters.
             </p>
           </div>
-          <button className="w-full sm:w-auto bg-[#675df9] text-white px-5 py-3 rounded-xl shadow hover:bg-[#5a4ce8] transition">
-            + Invite New User
-          </button>
+         
         </div>
 
         <div className="bg-white rounded-3xl shadow-sm p-4 sm:p-5 mb-6">

@@ -7,6 +7,7 @@ import ServiceGrid from '../components/ServiceGrid'
 import MatingSection from '../components/MatingSection'
 import RecentListings from '../components/RecentListings'
 import BlogSection from '../components/BlogSection'
+import DayCareSection from '../components/DayCareSection'
 
 const Home = () => {
   return (
@@ -18,11 +19,12 @@ const Home = () => {
         
         {/* Adds consistent vertical breathing room between sections */}
         <div className="flex flex-col gap-16 py-16">
-          <BreederCTA />
+         
           <PetListing />
           <FeaturesSection />
           <ServiceGrid />
           <MatingSection />
+          <DayCareSection />
           <RecentListings/>
           <BlogSection/>
   
